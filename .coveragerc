@@ -1,0 +1,7 @@
+[run]
+source = src
+[report]
+omit = 
+    src/tests/__init__.py
+    src/tests/varasto_test.py
+    src/index.py
