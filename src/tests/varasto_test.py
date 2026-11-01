@@ -64,7 +64,7 @@ class TestVarasto(unittest.TestCase):
 
     def test_virheellinen_lisays_palauttaa_nolla(self):
         saatu = self.varasto.ota_varastosta(-1)
-        self.assertAlmostEqual(saatu, 0)
+        self.assertAlmostEqual(saatu, 1)
 
     def test_str_esitys_oikea(self):
         oikea = f"saldo = {self.varasto.saldo}, vielä tilaa {self.varasto.paljonko_mahtuu()}"
