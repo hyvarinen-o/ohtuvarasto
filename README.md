@@ -1,5 +1,6 @@
 # ohtuvarasto
 Ainaki tehtävät 3-13 tulee tähän repoon
+Tehtäviä 14-17 varten palautus repo: https://github.com/hyvarinen-o/palautusrepositorio
 
 
 
