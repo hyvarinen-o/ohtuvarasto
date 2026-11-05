@@ -18,10 +18,10 @@ disable=raw-checker-failed,
         missing-class-docstring
 
 [FORMAT]
---max-line-lenght=80
---indent-string="    "
+max-line-length=80
+indent-string="    "
 [REFACTORING]
---max-nested-blocks=2
+max-nested-blocks=2
 [DESIGN]
 max-statements=10
 max-args=5
