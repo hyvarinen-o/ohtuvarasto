@@ -1,6 +1,7 @@
 # ohtuvarasto
-Ainaki tehtävät 3-13 tulee tähän repoon
-Tehtäviä 14-17 varten palautus repo: https://github.com/hyvarinen-o/palautusrepositorio
+## viikko1
+viikon 1 tehtävät 3-13 tulee tähän repoon
+viikon 1 tehtäviä 14-17 varten palautus repo: https://github.com/hyvarinen-o/palautusrepositorio
 
 
 
