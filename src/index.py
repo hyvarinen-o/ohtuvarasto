@@ -4,7 +4,30 @@ from varasto import Varasto
 def main():
     mehua = Varasto(100.0)
     olutta = Varasto(100.0, 20.2)
+    print("Tämä rivin tarkoitus on olla yli 80 merkin pituinen ja rikkoo määritetyt pylint säännöt")
+     print("tämä rikkoo indent-string")
+    #rikotaan max-statements
+    if True:
+       pass
+    if True:
+       pass
+    if False:
+       pass
+    if False:
+       pass
+    if True:
+       pass
+    if False:
+       pass
+    if False:
+        pass
+    def riko_parametri_määrä(a, b, c, d, e, f):
+       pass
+    
 
+
+
+    
     print("Luonnin jälkeen:")
     print(f"Mehuvarasto: {mehua}")
     print(f"Olutvarasto: {olutta}")
