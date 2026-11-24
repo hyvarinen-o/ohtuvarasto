@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Warehouse manager</title>
+    <style>
+        body { max-width: 960px; margin: 2rem auto; padding: 0 1rem;
+            font: 1rem/1.5 system-ui, sans-serif; color: #202a35; }
+        h1, h2 { color: #16324f; }
+        .create, .warehouse { padding: 1rem; margin: 1rem 0;
+            border: 1px solid #ccd5df; border-radius: .5rem; }
+        .warehouse { display: grid; grid-template-columns: 1fr auto;
+            gap: .75rem 1.5rem; align-items: center; }
+        .warehouse h3, .warehouse p { margin: 0; }
+        .actions { display: flex; gap: .5rem; flex-wrap: wrap; }
+        input, button { padding: .5rem; font: inherit; }
+        input[type="number"] { width: 7rem; }
+        button { cursor: pointer; }
+        .message { padding: .6rem; border-radius: .25rem; }
+        .error { background: #ffe5e5; }
+        .success { background: #e5f6e9; }
+        @media (max-width: 600px) {
+            .warehouse { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Warehouse manager</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <p class="message {{ category }}" role="status">{{ message }}</p>
+        {% endfor %}
+    {% endwith %}
+
+    <section class="create" aria-labelledby="create-heading">
+        <h2 id="create-heading">Create a warehouse</h2>
+        <form action="{{ url_for('warehouse.create_warehouse') }}" method="post">
+            <label>Name <input name="name" required maxlength="80"></label>
+            <label>Capacity
+                <input name="capacity" type="number" min="0.01" step="any" required>
+            </label>
+            <label>Initial inventory
+                <input name="initial_stock" type="number" min="0" step="any" value="0">
+            </label>
+            <button type="submit">Create warehouse</button>
+        </form>
+    </section>
+
+    <section aria-labelledby="warehouses-heading">
+        <h2 id="warehouses-heading">Warehouses</h2>
+        {% if warehouses %}
+            {% for warehouse in warehouses %}
+                <article class="warehouse">
+                    <div>
+                        <h3>{{ warehouse.name }}</h3>
+                        <p>Inventory: {{ warehouse.inventory.saldo|amount }} / {{ warehouse.inventory.tilavuus|amount }}</p>
+                        <p>Remaining space:
+                            {{ warehouse.inventory.paljonko_mahtuu()|amount }}</p>
+                    </div>
+                    <div class="actions">
+                        <form action="{{ url_for('warehouse.update_inventory', warehouse_id=warehouse.id, action='add') }}"
+                              method="post">
+                            <label>Add
+                                <input name="amount" type="number" min="0.01" step="any" required>
+                            </label>
+                            <button type="submit">Add items</button>
+                        </form>
+                        <form action="{{ url_for('warehouse.update_inventory', warehouse_id=warehouse.id, action='take') }}"
+                              method="post">
+                            <label>Take
+                                <input name="amount" type="number" min="0.01" step="any" required>
+                            </label>
+                            <button type="submit">Take items</button>
+                        </form>
+                    </div>
+                </article>
+            {% endfor %}
+        {% else %}
+            <p>No warehouses yet. Create one above to get started.</p>
+        {% endif %}
+    </section>
+</body>
+</html>
